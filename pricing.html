@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing — XetaX CRM</title>
+  <meta name="description" content="Simple, honest pricing for XetaX CRM — start free, upgrade when your team grows." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236366f1'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>X</text></svg>" />
+  <style>
+    .page { max-width: 860px; margin: 0 auto; padding: 7rem 1.25rem 4rem; }
+    .page h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: 0.4rem; }
+    .page .lead { color: var(--text-2); margin-bottom: 2.2rem; }
+    .page h2 { font-size: 1.15rem; margin: 2rem 0 0.6rem; }
+    .page p, .page li { color: var(--text-2); line-height: 1.7; font-size: 0.95rem; }
+    .page ul { padding-left: 1.2rem; }
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+    .plan { border: 1px solid var(--border, #e5e7eb); border-radius: 16px; padding: 1.6rem; background: #fff;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column; }
+    .plan--hot { border-color: #6366f1; box-shadow: 0 10px 32px rgba(99, 102, 241, 0.18); position: relative; }
+    .plan__tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+                 background: #6366f1; color: #fff; font-size: 0.7rem; font-weight: 700;
+                 padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.04em; }
+    .plan h3 { margin: 0 0 0.2rem; }
+    .plan .price { font-size: 1.9rem; font-weight: 800; margin: 0.4rem 0 0.1rem; }
+    .plan .price small { font-size: 0.8rem; font-weight: 500; color: var(--text-3); }
+    .plan ul { list-style: none; padding: 0; margin: 1rem 0 1.4rem; }
+    .plan li { padding: 0.28rem 0; font-size: 0.9rem; }
+    .plan li::before { content: '✓'; color: #16a34a; font-weight: 700; margin-right: 0.5rem; }
+    .plan .btn { margin-top: auto; text-align: center; }
+    .page .note { font-size: 0.85rem; color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="index.html">
+        <span class="nav__logo">X</span>
+        <span>XetaX <b>CRM</b></span>
+      </a>
+      <nav class="nav__links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#tour">Product tour</a>
+        <a href="index.html#autopilot">AI Autopilot</a>
+        <a href="index.html#invoicing">Invoicing</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="http://localhost:5000/login">Sign in</a>
+        <a class="btn btn--primary" href="http://localhost:5000/register">Start free</a>
+      </div>
+    </div>
+  </header>
+  <main class="page">
+    <h1>Simple pricing that grows with you</h1>
+    <p class="lead">Start free, no card needed. Upgrade only when your team and messages grow.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Free Trial</h3>
+        <div class="price">₹0 <small>/ 14 days</small></div>
+        <ul>
+          <li>Every feature unlocked for 14 days</li>
+          <li>AI assistant — 200 messages</li>
+          <li>Website &amp; WhatsApp AI agent — 100 messages</li>
+          <li>Live chat desk &amp; GST invoicing included</li>
+          <li>No card needed to start</li>
+          <li>Your data stays yours after the trial</li>
+        </ul>
+        <a class="btn btn--outline" href="http://localhost:5000/register">Start free trial</a>
+      </div>
+
+      <div class="plan plan--hot">
+        <span class="plan__tag">MOST POPULAR</span>
+        <h3>Growth</h3>
+        <div class="price">₹999 <small>/ month</small></div>
+        <ul>
+          <li>5 users with roles &amp; permissions</li>
+          <li>Unlimited forms, 25,000 records</li>
+          <li>WhatsApp inbox, templates &amp; campaigns</li>
+          <li>Automations &amp; approval workflows</li>
+          <li>Documents with auto-fill</li>
+          <li>GST invoicing &amp; payment tracking</li>
+          <li>Live chat desk for your team</li>
+          <li>Video meetings</li>
+          <li>AI assistant — 500 messages / month</li>
+        </ul>
+        <a class="btn btn--primary" href="http://localhost:5000/register">Try Growth</a>
+      </div>
+
+      <div class="plan">
+        <h3>Business</h3>
+        <div class="price">₹2,499 <small>/ month</small></div>
+        <ul>
+          <li>Unlimited users</li>
+          <li>Unlimited records</li>
+          <li>AI assistant — 2,000 messages / month</li>
+          <li>AI Autopilot on website + WhatsApp — 3,000 messages / month</li>
+          <li>AI-suggested pipeline moves &amp; conversation summaries</li>
+          <li>Daily autopilot digest</li>
+          <li>Priority support</li>
+        </ul>
+        <a class="btn btn--outline" href="http://localhost:5000/register">Talk to us</a>
+      </div>
+    </div>
+
+    <p class="note">Need more AI? Top-up packs start at ₹199 for 1,000 messages — buy them
+    right from the AI page in your panel; they never expire and are shared between the
+    assistant and your website agents.</p>
+
+    <p class="note">Plans are billed as a subscription (monthly or yearly) and activated by our team
+    once you've paid — your panel shows the plan and its "valid till" date, and reminds you a week
+    before renewal. When a plan lapses, your workspace simply drops to the free tier; nothing is deleted.</p>
+
+    <p class="note">Prices are introductory and may change at general availability. WhatsApp
+    conversation charges are billed by Meta directly to your WhatsApp Business account —
+    XetaX never marks them up.</p>
+  </main>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="nav__logo">X</span>
+        <div><b>XetaX CRM</b><small>One simple screen for your whole business.</small></div>
+      </div>
+      <nav class="footer__links">
+        <a href="index.html#features">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <small class="footer__note">© 2026 XetaX. All rights reserved.</small>
+    </div>
+  </footer>
+</body>
+</html>
