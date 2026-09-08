@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers (static assets) — marketing site for xetacrm.pro
+  // Dashboard: Workers & Pages → Create → connect repo → Build command: (none) → Deploy: npx wrangler deploy
+  "name": "xetacrm-website",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash"
+  }
+}
