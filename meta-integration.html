@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meta & WhatsApp integration — XetaX CRM</title>
+  <meta name="description" content="Exactly what XetaX does with WhatsApp Business and Facebook lead ads: the permissions used, the data stored, and how to revoke access." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236366f1'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>X</text></svg>" />
+  <style>
+    .page { max-width: 860px; margin: 0 auto; padding: 7rem 1.25rem 4rem; }
+    .page h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: 0.4rem; }
+    .page .lead { color: var(--text-2); margin-bottom: 2.2rem; }
+    .page h2 { font-size: 1.15rem; margin: 2rem 0 0.6rem; }
+    .page h3 { font-size: 1rem; margin: 1.4rem 0 0.4rem; }
+    .page p, .page li { color: var(--text-2); line-height: 1.7; font-size: 0.95rem; }
+    .page ul { padding-left: 1.2rem; }
+    .page .note { font-size: 0.85rem; color: var(--text-3); }
+    .page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.9rem; }
+    .page th, .page td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--border, #e5e7eb);
+                         color: var(--text-2); vertical-align: top; }
+    .page th { color: var(--text-1); font-weight: 700; }
+    .card-box { border: 1px solid var(--border, #e5e7eb); border-radius: 14px; padding: 1.2rem 1.3rem;
+                background: #fff; margin: 1.2rem 0; }
+    .card-box h3 { margin-top: 0; }
+    .biz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="index.html">
+        <span class="nav__logo">X</span>
+        <span>XetaX <b>CRM</b></span>
+      </a>
+      <nav class="nav__links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#tour">Product tour</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="https://app.xetacrm.pro/login">Sign in</a>
+        <a class="btn btn--primary" href="https://app.xetacrm.pro/register">Start free</a>
+      </div>
+    </div>
+  </header>
+  <main class="page">
+    <h1>How XetaX uses WhatsApp and Facebook</h1>
+    <p class="lead">
+      Two parts of XetaX talk to Meta, and only after a business connects them itself. This page says
+      exactly what is requested, what is stored and how to take it back.
+    </p>
+
+    <h2>In one paragraph</h2>
+    <p>
+      XetaX is a CRM. A business connects its own WhatsApp Business number so its team can chat with
+      customers from the CRM instead of a phone, and connects its own Facebook Page so the leads its
+      ads produce land in the CRM instead of a spreadsheet. XetaX never posts on anyone's behalf,
+      never runs or edits ads, and never touches accounts the business has not connected.
+    </p>
+
+    <h2>1. WhatsApp Business Platform</h2>
+    <h3>What the business gets</h3>
+    <ul>
+      <li>A shared team inbox for their own WhatsApp Business number.</li>
+      <li>Message templates, submitted to Meta for approval from the panel.</li>
+      <li>Campaigns to their own customer list, and automatic messages such as an order update.</li>
+      <li>An optional AI assistant that answers on the number, hands over to a human on request.</li>
+    </ul>
+    <h3>How it is connected</h3>
+    <p>
+      Through Meta's Embedded Signup, inside the panel. The business signs in with its own Facebook
+      account and picks its own WhatsApp Business account and number. XetaX receives an access token
+      for that account only.
+    </p>
+    <h3>What is stored</h3>
+    <table>
+      <tr><th>Data</th><th>Why</th></tr>
+      <tr><td>WhatsApp Business account id, phone number id, display number</td><td>to send and receive on the right number</td></tr>
+      <tr><td>Access token, encrypted at rest (AES-GCM)</td><td>to call Meta's API on the business's behalf; never shown in the browser</td></tr>
+      <tr><td>Messages sent and received, with the customer's phone number and name</td><td>the inbox itself, and the customer's history on their record</td></tr>
+      <tr><td>Template names and their approval status</td><td>so the panel knows what may be sent outside the 24-hour window</td></tr>
+    </table>
+
+    <h2>2. Facebook &amp; Instagram lead ads</h2>
+    <h3>What the business gets</h3>
+    <ul>
+      <li>Every submission of its own lead-form ads becomes a CRM record within seconds.</li>
+      <li>Spend and results per campaign, joined to what those leads turned into — cost per lead and cost per sale.</li>
+    </ul>
+    <h3>Permissions requested, and why</h3>
+    <table>
+      <tr><th>Permission</th><th>Used for</th></tr>
+      <tr><td><code>pages_show_list</code></td><td>showing the business its own Pages so it can pick the right one</td></tr>
+      <tr><td><code>pages_read_engagement</code></td><td>reading the Page's name and basic details for the connection screen</td></tr>
+      <tr><td><code>pages_manage_metadata</code></td><td>subscribing that Page to our webhook so its leads are delivered</td></tr>
+      <tr><td><code>leads_retrieval</code></td><td>reading the answers of a lead form the customer just submitted</td></tr>
+      <tr><td><code>ads_read</code></td><td>reading spend, impressions and results per ad, to report cost per lead and per sale</td></tr>
+      <tr><td><code>business_management</code></td><td>listing the ad accounts the business owns, so it can pick one</td></tr>
+    </table>
+    <p class="note">
+      XetaX does not request <code>ads_management</code>. It cannot create, edit, pause or spend on
+      ads. Ads stay entirely in the business's own Ads Manager.
+    </p>
+    <h3>What is stored</h3>
+    <table>
+      <tr><th>Data</th><th>Why</th></tr>
+      <tr><td>Page id and name, Instagram account id, ad account id</td><td>to know which Page and account the workspace connected</td></tr>
+      <tr><td>Page and user access tokens, encrypted at rest</td><td>to receive leads and read spend; never shown in the browser</td></tr>
+      <tr><td>The lead's own answers — typically name, phone, email and the form's questions</td><td>this becomes the CRM record the business follows up</td></tr>
+      <tr><td>Which campaign and ad the lead came from</td><td>so the business can see which campaign produced sales</td></tr>
+      <tr><td>Daily spend, impressions, clicks and results per ad</td><td>the cost-per-lead and cost-per-sale report</td></tr>
+    </table>
+
+    <h2>What XetaX never does</h2>
+    <ul>
+      <li>Post, comment or message as the business on Facebook or Instagram.</li>
+      <li>Create, edit or pause ads, or move budget.</li>
+      <li>Read a Page's followers, private inbox or anything unrelated to its lead forms.</li>
+      <li>Sell data, share it between customers, or use one business's data for another's benefit.</li>
+      <li>Use business data to train AI models.</li>
+    </ul>
+
+    <h2>Where the data lives</h2>
+    <p>
+      On XetaX's own servers in a single database per deployment, separated by workspace: every row
+      carries the id of the business that owns it, and a request can only ever read its own. Tokens
+      are encrypted with a key held only on the server. Traffic runs over HTTPS. Meta's webhooks are
+      accepted only when their signature matches our app secret.
+    </p>
+
+    <h2>How long it is kept</h2>
+    <p>
+      For as long as the business keeps its workspace. It can delete any record, chat or document
+      itself at any time, and closing the account deletes everything. Details and timings are on the
+      <a href="data-deletion.html">Data deletion</a> page.
+    </p>
+
+    <h2>Taking access back</h2>
+    <ul>
+      <li><b>In XetaX</b> — WhatsApp → Setup → Disconnect, or Facebook Ads → Disconnect. Tokens are deleted at once.</li>
+      <li><b>In Meta</b> — Business Settings → Business Integrations, or Facebook → Settings → Apps and Websites, and remove XetaX.</li>
+    </ul>
+    <p>
+      Either way XetaX immediately stops sending, receiving and reading. Nothing further is requested
+      from Meta unless the business connects again.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this integration, or a request about data:
+      <a href="mailto:xetacrm@gmail.com">xetacrm@gmail.com</a> or <a href="tel:+918587812664">+91 85878 12664</a>. See also the
+      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="nav__logo">X</span>
+        <div><b>XetaX CRM</b><small>One simple screen for your whole business.</small></div>
+      </div>
+      <nav class="footer__links">
+        <a href="index.html#features">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="meta-integration.html">Meta &amp; WhatsApp</a>
+        <a href="data-deletion.html">Data deletion</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <small class="footer__note">
+        XetaX CRM · <a href="mailto:xetacrm@gmail.com">xetacrm@gmail.com</a> · <a href="tel:+918587812664">+91 85878 12664</a><br />
+        © 2026 XetaX. All rights reserved.
+      </small>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
