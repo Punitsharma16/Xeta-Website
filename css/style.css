@@ -320,7 +320,10 @@ h3 { font-size: 1.05rem; font-weight: 700; }
   .float-card--a { right: 4px; }
   .float-card--b { left: 4px; }
 }
-@media (max-width: 720px) {
+/* The header alone collapses earlier than the rest: eleven links need about
+   1100px, and between that and the old 720px breakpoint it ran off the side
+   and took the whole page's horizontal scroll with it. */
+@media (max-width: 1150px) {
   .nav__links, .nav__cta { display: none; }
   .nav__burger { display: block; margin-left: auto; }
   .nav__links.is-open {
@@ -328,6 +331,9 @@ h3 { font-size: 1.05rem; font-weight: 700; }
     flex-direction: column; background: #fff; border-bottom: 1px solid var(--border);
     padding: 1rem 4%; gap: 0.9rem; box-shadow: var(--shadow-md);
   }
+}
+
+@media (max-width: 720px) {
   .grid.features, .grid.trust { grid-template-columns: 1fr; }
   .biz__panel { padding: 1.3rem 1.2rem; }
 }

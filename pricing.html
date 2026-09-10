@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236366f1'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>X</text></svg>" />
   <style>
-    .page { max-width: 860px; margin: 0 auto; padding: 7rem 1.25rem 4rem; }
+    /* Wider than the other pages on purpose: at 860px three plan cards left the
+       feature lines wrapping every few words. Prose keeps its own reading width. */
+    .page { max-width: 1160px; margin: 0 auto; padding: 7rem 1.25rem 4rem; }
+    .page > h1, .page > .lead, .page > .note { max-width: 760px; }
     .page h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: 0.4rem; }
     .page .lead { color: var(--text-2); margin-bottom: 2.2rem; }
     .page h2 { font-size: 1.15rem; margin: 2rem 0 0.6rem; }
     .page p, .page li { color: var(--text-2); line-height: 1.7; font-size: 0.95rem; }
     .page ul { padding-left: 1.2rem; }
-    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
-    .plan { border: 1px solid var(--border, #e5e7eb); border-radius: 16px; padding: 1.6rem; background: #fff;
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.6rem; margin: 2.4rem 0; }
+    .plan { border: 1px solid var(--border, #e5e7eb); border-radius: 16px; padding: 2rem 1.8rem; background: #fff;
             box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column; }
     .plan--hot { border-color: #6366f1; box-shadow: 0 10px 32px rgba(99, 102, 241, 0.18); position: relative; }
     .plan__tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
@@ -25,8 +28,8 @@
     .plan .price { font-size: 1.9rem; font-weight: 800; margin: 0.4rem 0 0.1rem; }
     .plan .price small { font-size: 0.8rem; font-weight: 500; color: var(--text-3); }
     .plan ul { list-style: none; padding: 0; margin: 1rem 0 1.4rem; }
-    .plan li { padding: 0.28rem 0; font-size: 0.9rem; }
-    .plan li::before { content: '✓'; color: #16a34a; font-weight: 700; margin-right: 0.5rem; }
+    .plan li { position: relative; padding: 0.3rem 0 0.3rem 1.5rem; font-size: 0.92rem; line-height: 1.55; }
+    .plan li::before { content: '✓'; position: absolute; left: 0; top: 0.3rem; color: #16a34a; font-weight: 700; }
     .plan .btn { margin-top: auto; text-align: center; }
     .page .note { font-size: 0.85rem; color: var(--text-3); }
   </style>
@@ -38,7 +41,7 @@
         <span class="nav__logo">X</span>
         <span>XetaX <b>CRM</b></span>
       </a>
-      <nav class="nav__links">
+      <nav class="nav__links" id="navLinks">
         <a href="index.html#features">Features</a>
         <a href="index.html#tour">Product tour</a>
         <a href="index.html#leadads">Ad leads</a>
@@ -53,6 +56,7 @@
         <a class="btn btn--ghost" href="https://app.xetacrm.pro/login">Sign in</a>
         <a class="btn btn--primary" href="https://app.xetacrm.pro/register">Start free</a>
       </div>
+      <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
   <main class="page">
@@ -150,5 +154,6 @@
       </small>
     </div>
   </footer>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
