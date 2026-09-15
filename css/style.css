@@ -95,7 +95,10 @@ h3 { font-size: 1.05rem; font-weight: 700; }
 .nav__brand b { color: var(--brand); }
 .nav__logo {
   width: 34px; height: 34px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  /* The mark keeps its own gradient rather than the page's button one: the
+     app's sidebar draws it indigo-to-deep-indigo, and a logo that shifts
+     colour between the site and the product stops reading as one brand. */
+  background: linear-gradient(135deg, #6366f1, #3730a3);
   color: #fff; font-weight: 800; display: inline-flex;
   align-items: center; justify-content: center; font-size: 1.05rem;
 }
@@ -464,3 +467,73 @@ a.fcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); borde
 .split, .split__media, .split__copy { min-width: 0; }
 .embed-demo code { white-space: pre-wrap; word-break: break-all; }
 .botdemo { max-width: 100%; }
+
+/* ============================================ WhatsApp demo (flows, rich messages)
+   A small mock of a phone chat. Screenshots of a real Flow would have to be
+   retaken every time Meta changes its chrome, and a customer's own data is
+   never safe to publish — so these two sections draw the idea instead. */
+.phone-frame {
+  width: min(320px, 100%);
+  margin-inline: auto;
+  border-radius: 34px;
+  padding: 10px;
+  background: #101426;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.28);
+}
+.phone-frame__screen {
+  border-radius: 26px;
+  overflow: hidden;
+  background: #e5ddd5;
+}
+.wa-demo { padding: 0 0 14px; font-size: 0.82rem; line-height: 1.45; }
+.wa-demo__bar {
+  background: #075e54; color: #fff; font-weight: 600;
+  padding: 0.7rem 0.9rem; font-size: 0.85rem;
+}
+.wa-demo__msg {
+  margin: 10px 12px; padding: 0.6rem 0.75rem; border-radius: 12px;
+  background: #fff; color: #111b21; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+.wa-demo__msg--out { background: #d9fdd3; margin-left: 48px; }
+.wa-demo__cta {
+  display: block; margin-top: 0.55rem; padding-top: 0.5rem;
+  border-top: 1px solid #e9edef; color: #027eb5; font-weight: 600; text-align: center;
+}
+.wa-demo__card {
+  margin: 0 12px; background: #fff; border-radius: 14px; padding: 0.85rem 0.9rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+.wa-demo__card-title { font-weight: 700; color: #111b21; }
+.wa-demo__step { font-size: 0.7rem; color: #667781; margin-bottom: 0.6rem; }
+.wa-demo__field {
+  display: flex; justify-content: space-between; gap: 0.6rem;
+  border-bottom: 1px solid #eef1f3; padding: 0.45rem 0; color: #667781;
+}
+.wa-demo__field b { color: #111b21; font-weight: 600; }
+.wa-demo__btn {
+  margin-top: 0.8rem; background: #00a884; color: #fff; text-align: center;
+  padding: 0.5rem; border-radius: 999px; font-weight: 600;
+}
+.wa-demo__banner {
+  margin: 10px 12px 0; height: 96px; border-radius: 12px; font-size: 2.6rem;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #6366f1, #3730a3);
+}
+.wa-demo__btnrow { margin: 0 12px; display: grid; gap: 4px; }
+.wa-demo__btnrow span {
+  background: #fff; color: #027eb5; text-align: center; font-weight: 600;
+  padding: 0.45rem; border-radius: 10px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+.wa-demo__carousel {
+  margin: 12px 0 0 12px; display: flex; gap: 8px; overflow: hidden;
+}
+.wa-demo__slide {
+  flex: 0 0 116px; background: #fff; border-radius: 12px; padding: 0.55rem;
+  color: #111b21; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); font-weight: 600;
+}
+.wa-demo__slide small { color: #667781; font-weight: 500; }
+.wa-demo__slide-img {
+  height: 58px; border-radius: 8px; margin-bottom: 0.4rem; font-size: 1.8rem;
+  display: flex; align-items: center; justify-content: center; background: #f0f2f5;
+}
+.wa-demo__slide--peek { opacity: 0.55; }
