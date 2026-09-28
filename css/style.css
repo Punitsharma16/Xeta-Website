@@ -190,6 +190,9 @@ h3 { font-size: 1.05rem; font-weight: 700; }
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  /* The "New" tag pins itself to its card's corner; without this only the
+     cards that are links have a corner for it to pin to. */
+  position: relative;
 }
 .fcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #d9dcf0; }
 .fcard__icon {
