@@ -540,3 +540,141 @@ a.fcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); borde
   display: flex; align-items: center; justify-content: center; background: #f0f2f5;
 }
 .wa-demo__slide--peek { opacity: 0.55; }
+
+/* ============================================================== flow map
+   "How it fits together" — the one picture that answers the question a
+   feature list never does: where does my customer come in, and what do I
+   get back out. Built as boxes rather than one wide SVG so it reflows to a
+   single readable column on a phone instead of shrinking its own labels
+   past legibility. */
+
+.flowmap {
+  display: grid;
+  grid-template-columns: 1fr auto 1.05fr auto 1fr;
+  align-items: stretch;
+  gap: 0;
+}
+
+.flowmap__col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.flowmap__col--core {
+  background: linear-gradient(180deg, #f3f4ff 0%, var(--surface) 70%);
+  border-color: #d6d9fb;
+  box-shadow: var(--shadow-md);
+}
+
+.flowmap__step {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin: 0 0 4px;
+}
+
+.flowmap__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+.flowmap__items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flowmap__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #3d4260;
+  background: var(--bg-tint);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+.flowmap__col--core .flowmap__item {
+  background: var(--surface);
+  border-color: #dfe2fa;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ico-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* One stroke weight, our own colour. Emoji were rendering three different
+   ways on the same row — flat, full-colour, and a grey tofu box — because
+   each one comes from whatever emoji font the reader's device ships. */
+.flowmap__ico,
+.module__ico {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flowmap__ico { width: 17px; height: 17px; color: var(--brand); }
+
+/* The arrow between two columns: horizontal on a wide screen, pointing down
+   once the columns stack. */
+.flowmap__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  color: #b9bddd;
+}
+
+.flowmap__arrow svg { width: 26px; height: 26px; display: block; }
+
+.flowmap__note {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--muted, #6b7090);
+}
+
+@media (max-width: 920px) {
+  .flowmap { grid-template-columns: 1fr; }
+  .flowmap__arrow { width: auto; height: 42px; }
+  .flowmap__arrow svg { transform: rotate(90deg); }
+}
+
+/* ============================================================ module grid
+   Every part of the panel on one screen. The long tour below explains a few
+   of these properly; this is for the reader who just wants to know what is
+   in the box before they read anything. */
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.module {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.module__ico { width: 22px; height: 22px; display: block; margin-bottom: 10px; color: var(--brand); }
+.module h3 { font-size: 14.5px; margin: 0 0 4px; color: var(--text); }
+.module p { font-size: 13px; line-height: 1.5; margin: 0; color: #5b6080; }
