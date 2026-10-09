@@ -1057,3 +1057,145 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .packflow-wrap { padding: 1rem 0.5rem; overflow-x: auto; }
   .packflow { min-width: 620px; }
 }
+
+/* ===================================================== polish pass (Oct 2026)
+   Same layout as before; tightens type, balances the two-column blocks and
+   replaces emoji with the site's icon sprite. */
+h1 { letter-spacing: -0.035em; }
+.hero__sub { font-size: 1.1rem; line-height: 1.7; }
+.hero .chip { padding: 0.4rem 0.9rem; }
+.float-card__icon svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* two columns that actually read as two equal halves */
+.split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); }
+.split--packs .split__copy h2 { margin: 0.2rem 0 0.8rem; }
+.split--packs .split__copy > p { color: var(--text-2); margin-bottom: 1.8rem; }
+.split--packs .split__copy .btn { margin-top: 1.8rem; }
+
+/* product tour: list as tall as the screen next to it */
+.tour--split { grid-template-columns: 260px minmax(0, 1fr); gap: 3rem; }
+.tour__tabs { gap: 4px; }
+.tour__tab { padding: 0.72rem 1rem; font-size: 0.93rem; border-radius: 10px; }
+.tour__tab.is-active { box-shadow: var(--shadow-sm); }
+.tour__cap { margin-top: 1rem; }
+
+/* business tabs: pipeline on the left, what happens on the right */
+.biz__panel { max-width: none; padding: 0; overflow: hidden; }
+.biz__panel.is-active { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.biz__panel .biz__pipeline {
+  flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 2rem 2rem;
+  border: 0; border-right: 1px solid var(--border); background: var(--bg-tint); counter-reset: st;
+}
+.biz__panel .biz__pipeline i { display: none; }
+.biz__panel .biz__pipeline span {
+  counter-increment: st; position: relative; display: flex; align-items: center; gap: 0.8rem;
+  border: 0; background: none; padding: 0.55rem 0; border-radius: 0;
+  font-size: 0.95rem; font-weight: 600; color: var(--text);
+}
+.biz__panel .biz__pipeline span::before {
+  content: counter(st); flex: none; display: inline-grid; place-items: center;
+  width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 1.5px solid var(--border);
+  font-size: 0.75rem; color: var(--text-2); position: relative; z-index: 1;
+}
+.biz__panel .biz__pipeline span + span::after,
+.biz__panel .biz__pipeline i + span::after {
+  content: ""; position: absolute; left: 13.5px; top: -12px; height: 22px; width: 1.5px; background: var(--border);
+}
+.biz__panel .biz__pipeline span.win { color: var(--green); background: none; }
+.biz__panel .biz__pipeline span.win::before { content: "✓"; background: var(--green); border-color: var(--green); color: #fff; }
+.biz__list { padding: 2rem 2.2rem; align-content: center; gap: 0.95rem; }
+.biz__list li { font-size: 0.95rem; }
+
+/* trust cards: icon tile, left aligned, equal heights */
+.grid.trust { align-items: stretch; }
+.tcard { text-align: left; padding: 1.6rem; display: flex; flex-direction: column; }
+.tcard__ico {
+  display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+  background: var(--brand-soft); color: var(--brand);
+}
+.tcard__ico svg { width: 19px; height: 19px; fill: currentColor; }
+.tcard h3 { margin: 1rem 0 0.4rem; font-size: 1rem; }
+.tcard p { font-size: 0.88rem; line-height: 1.6; }
+
+@media (max-width: 920px) {
+  .split, .tour--split { grid-template-columns: 1fr; }
+  .biz__panel.is-active { grid-template-columns: 1fr; }
+  .biz__panel .biz__pipeline { border-right: 0; border-bottom: 1px solid var(--border); padding: 1.4rem 1.3rem; }
+  .biz__list { padding: 1.4rem 1.3rem; }
+}
+.hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(2rem, 4vw, 4rem); }
+.hero h1 { font-size: clamp(2.3rem, 4.4vw, 3.5rem); text-wrap: balance; }
+.float-card--a { top: 30%; right: -28px; }
+.float-card--b { bottom: -22px; left: -24px; }
+@media (max-width: 920px) { .float-card--a { right: 8px; } .float-card--b { left: 8px; } }
+
+/* feature pages: heading on the left, the list on the right (no empty half) */
+@media (min-width: 921px) {
+  .section > .container:has(> .section__head + .steps),
+  .section > .container:has(> .section__head + .checks),
+  .section > .container:has(> .section__head + .faq) {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: 4rem; align-items: start;
+  }
+  .section > .container:has(> .section__head + .steps) > .section__head,
+  .section > .container:has(> .section__head + .checks) > .section__head,
+  .section > .container:has(> .section__head + .faq) > .section__head {
+    position: sticky; top: 104px; margin: 0;
+  }
+  .section > .container > .section__head + .steps,
+  .section > .container > .section__head + .checks,
+  .section > .container > .section__head + .faq { max-width: none !important; margin: 0 !important; }
+}
+@media (max-width: 920px) { .hero__inner { grid-template-columns: 1fr; } }
+
+/* product tour as two real columns: copy + screen picker | the screen */
+.tour--two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.tour--two .tour__head h2 { margin: 0.2rem 0 0.6rem; }
+.tour--two .tour__head p { color: var(--text-2); }
+.tour--two .tour__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 1.6rem; }
+.tour--two .tour__tab {
+  width: 100%; text-align: left; padding: 0.7rem 0.95rem; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border); font-size: 0.9rem; color: var(--text-2);
+}
+.tour--two .tour__tab::before { display: none; }
+.tour--two .tour__tab:hover { border-color: #c9cdf5; color: var(--text); }
+.tour--two .tour__tab.is-active { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); box-shadow: none; }
+.tour--two .tour__cap {
+  margin-top: 1.2rem; padding: 0.95rem 1.1rem; border-radius: 12px; max-width: none;
+  background: var(--surface); border-left: 3px solid var(--brand); color: var(--text); font-size: 0.93rem;
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 920px) {
+  .tour--two { grid-template-columns: minmax(0, 1fr); }
+  .tour--two .tour__tabs { display: flex; overflow-x: auto; flex-wrap: nowrap; }
+  .tour--two .tour__tab { width: auto; white-space: nowrap; }
+}
+
+/* ------------------------------------------- dropdown panels: larger, official */
+@media (min-width: 921px) {
+  .mega {
+    width: min(calc(var(--cols, 3) * 17.5rem + 3rem), calc(100vw - 3rem));
+    padding: 1.6rem 1.6rem 1.4rem; border-radius: 20px; top: calc(100% + 14px);
+    border-color: #e3e6f3;
+    box-shadow: 0 30px 70px -20px rgba(23, 26, 46, 0.28), 0 10px 24px -12px rgba(23, 26, 46, 0.12);
+  }
+  .mega::after {
+    content: ""; position: absolute; top: -7px; left: 50%; width: 14px; height: 14px;
+    background: var(--surface); border-left: 1px solid #e3e6f3; border-top: 1px solid #e3e6f3;
+    transform: translateX(-50%) rotate(45deg); border-radius: 3px 0 0 0;
+  }
+  .mega__cols { gap: 0.4rem 1.6rem; }
+  .mega__group + .mega__group { border-left: 1px solid var(--border); padding-left: 1.6rem; margin-left: -0.2rem; }
+  .mega__title {
+    font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-3);
+    padding: 0 0.7rem 0.7rem; margin-bottom: 0.3rem; border-bottom: 1px solid var(--border);
+  }
+  .mega__link { gap: 0.85rem; align-items: flex-start; padding: 0.7rem 0.7rem; border-radius: 12px; }
+  .mega__link:hover { background: #f4f5fd; }
+  .mega__link:hover .mega__ico { background: var(--brand); color: #fff; }
+  .mega__ico { width: 38px; height: 38px; border-radius: 10px; transition: background 0.14s ease, color 0.14s ease; }
+  .mega__ico svg { width: 17px; height: 17px; }
+  .mega__link b { font-size: 0.92rem; font-weight: 600; line-height: 1.35; }
+  .mega__link small { display: block; margin-top: 2px; font-size: 0.79rem; line-height: 1.45; color: var(--text-3); }
+  .mega__foot { margin: 1.2rem -1.6rem -1.4rem; padding: 1rem 1.6rem; border-radius: 0 0 20px 20px; font-size: 0.86rem; }
+}
+@media (min-width: 921px) { .mega::after { display: none; } }
