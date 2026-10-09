@@ -20,6 +20,68 @@
     });
   }
 
+  /* ------------------------------------------------ header dropdowns */
+  const menuItems = Array.from(document.querySelectorAll("[data-menu]"));
+  if (menuItems.length) {
+    const desktop = () => window.matchMedia("(min-width: 921px)").matches;
+    const closeAll = (except) => {
+      menuItems.forEach((item) => {
+        if (item === except) return;
+        item.classList.remove("is-open");
+        const b = item.querySelector("button");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+    };
+    const setOpen = (item, open) => {
+      item.classList.toggle("is-open", open);
+      const b = item.querySelector("button");
+      if (b) b.setAttribute("aria-expanded", String(open));
+    };
+
+    menuItems.forEach((item) => {
+      const btn = item.querySelector("button");
+
+      // Pointer: open on hover, but only where there is room for a panel.
+      item.addEventListener("mouseenter", () => {
+        if (!desktop()) return;
+        closeAll(item);
+        setOpen(item, true);
+      });
+      let closeTimer = null;
+      const hold = () => clearTimeout(closeTimer);
+      const release = () => {
+        if (!desktop()) return;
+        // a grace period, so crossing the gap below the button does not shut it
+        closeTimer = setTimeout(() => setOpen(item, false), 260);
+      };
+      item.addEventListener("mouseenter", hold);
+      item.addEventListener("mouseleave", release);
+      // The panel sits below a small gap; entering it must cancel the close.
+      const panel = item.querySelector(".mega");
+      if (panel) {
+        panel.addEventListener("mouseenter", hold);
+        panel.addEventListener("mouseleave", release);
+      }
+
+      // Tap and keyboard: the button toggles its own panel.
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const open = !item.classList.contains("is-open");
+          closeAll(item);
+          setOpen(item, open);
+        });
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("[data-menu]")) closeAll(null);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll(null);
+    });
+  }
+
   /* ------------------------------------------------------ scroll reveal */
   const revealEls = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -83,6 +145,7 @@
   /* ------------------------------------------------------ business tabs */
   const bizTabs = document.getElementById("bizTabs");
   if (bizTabs) {
+
     const panels = document.querySelectorAll(".biz__panel");
     bizTabs.addEventListener("click", (e) => {
       const tab = e.target.closest(".biz__tab");
@@ -91,5 +154,12 @@
       tab.classList.add("is-active");
       panels.forEach((p) => p.classList.toggle("is-active", p.dataset.biz === tab.dataset.biz));
     });
+
+    // Arriving from the Solutions menu: open the business that was chosen.
+    const wanted = new URLSearchParams(location.search).get("biz");
+    if (wanted) {
+      const target = bizTabs.querySelector('.biz__tab[data-biz="' + wanted + '"]');
+      if (target) target.click();
+    }
   }
 })();
